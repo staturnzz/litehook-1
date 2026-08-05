@@ -247,9 +247,8 @@ bool is_pointer_to_instructions(const mach_header_u *header, uintptr_t ptr)
 				uint64_t sectEnd   = sectStart + sect->size;
 
 				if ((ptr >= sectStart) && (ptr < sectEnd)) {
-					uint32_t attrs = sect->flags & SECTION_ATTRIBUTES_USR;
-					return (attrs & S_ATTR_PURE_INSTRUCTIONS) ||
-						   (attrs & S_ATTR_SOME_INSTRUCTIONS);
+					return (sect->flags & S_ATTR_PURE_INSTRUCTIONS) ||
+						   (sect->flags & S_ATTR_SOME_INSTRUCTIONS);
 				}
 			}
 		}
